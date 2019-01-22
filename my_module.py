@@ -36,21 +36,19 @@ def drop_na(df, axis = 'row'):
 # In[75]:
 
 def fill_na(data, fill = 'mean'):
-	ch = 0
-    data = pd.DataFrame(data)
-    for col in data.columns:
-        if fill == 'mean':
-            tmp = data[col].mean()
-        if fill =='median':
-            tmp = data[col].median()
-        if fill == 'mode':
-            tmp = data[col].mode()[0]
-        for i in range(len(data[col])):
-            if pd.isnull(data.loc[i, col]):
-				ch = ch + 1
-                data.loc[i, col] = tmp
-	print('we replaced '+ ch + 'Nan-value ' )
-    return data
+        data = pd.DataFrame(data)
+        for col in data.columns:
+            if fill == 'mean':
+                tmp = data[col].mean()
+            if fill =='median':
+                tmp = data[col].median()
+            if fill == 'mode':
+                tmp = data[col].mode()[0]
+            for i in range(len(data[col])):
+                if pd.isnull(data.loc[i, col]):
+                    ch = ch + 1
+                    data.loc[i, col] = tmp
+        return data
 
 
 # In[8]:
